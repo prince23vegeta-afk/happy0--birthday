@@ -1,0 +1,264 @@
+:root {
+  --primary: #ff3399;
+  --accent: #ffccdd;
+  --dark: #140011;
+  --light: #fff0f5;
+  --glow: 0 0 20px rgba(255, 51, 153, 0.6);
+  --blur: blur(8px);
+  --font-main: 'Segoe UI', sans-serif;
+  --font-cursive: 'Pacifico', cursive;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  color: var(--light);
+  background: var(--dark);
+  overflow-x: hidden;
+}
+
+/* -------------------------- */
+/* Act I: friend.html styles  */
+/* -------------------------- */
+
+.curtain-wrapper {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  z-index: 10;
+  display: flex;
+  overflow: hidden;
+}
+
+.curtain {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #ff3399, #cc0066);
+  transition: transform 2s ease-in-out;
+}
+
+.left {
+  transform-origin: left center;
+}
+.right {
+  transform-origin: right center;
+}
+
+body.curtain-open .left {
+  transform: translateX(-100%);
+}
+body.curtain-open .right {
+  transform: translateX(100%);
+}
+
+.opening {
+  z-index: 11;
+  position: relative;
+  padding-top: 20vh;
+  text-align: center;
+  animation: fadeIn 2s ease 2s forwards;
+}
+
+.wajiha-name-glow {
+  font-size: 3rem;
+  text-shadow: var(--glow);
+  margin-bottom: 1rem;
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+.title-line {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.countdown-line {
+  font-size: 1.5rem;
+  animation: floaty 2s infinite;
+}
+
+.spotlight-sweep {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(60deg, transparent 20%, rgba(255,255,255,0.1), transparent 80%);
+  animation: sweepLight 6s ease-in-out infinite;
+}
+
+/* Falling Petals */
+.petals-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background: url('https://i.ibb.co/fHPjk3x/petals.gif') repeat;
+  opacity: 0.2;
+}
+
+/* -------------------------- */
+/* Act II: friend2.html       */
+/* -------------------------- */
+
+.memory-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 3rem 0 2rem;
+  color: var(--accent);
+  text-shadow: var(--glow);
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.memory-card {
+  width: 180px;
+  height: 220px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.memory-card .front,
+.memory-card .back {
+  width: 100%; height: 100%;
+  position: absolute;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  backface-visibility: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  background: var(--accent);
+  color: var(--dark);
+  padding: 1rem;
+  backdrop-filter: var(--blur);
+}
+
+.memory-card .back {
+  transform: rotateY(180deg);
+  background: #fff8fc;
+}
+
+.memory-card.flipped .front {
+  transform: rotateY(180deg);
+}
+.memory-card.flipped .back {
+  transform: rotateY(0deg);
+}
+
+/* Fireflies */
+.firefly-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.2) 2px, transparent 2px);
+  background-size: 50px 50px;
+  animation: fireflyGlow 20s linear infinite;
+  opacity: 0.1;
+}
+
+/* Magic Button */
+.magic-next-btn {
+  display: block;
+  margin: 3rem auto;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  box-shadow: 0 0 20px rgba(255, 51, 153, 0.5);
+  transition: transform 0.3s, background 0.3s;
+}
+.magic-next-btn:hover {
+  transform: scale(1.05);
+  background: #cc0066;
+}
+
+/* -------------------------- */
+/* Act III: friend3.html      */
+/* -------------------------- */
+
+.pulse-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #440022, #140011 70%);
+  animation: heartbeatPulse 3s infinite ease-in-out;
+  z-index: 0;
+}
+
+.letter-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: 1rem;
+  backdrop-filter: var(--blur);
+  box-shadow: var(--glow);
+}
+
+.type-line {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: typeReveal 1s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+.final-line {
+  font-size: 1.5rem;
+  color: var(--accent);
+  font-weight: bold;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+@keyframes typeReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heartbeatPulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.02); opacity: 1; }
+}
+
+@keyframes sweepLight {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 200%; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: var(--glow); transform: scale(1); }
+  50% { text-shadow: 0 0 40px var(--primary); transform: scale(1.1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes fireflyGlow {
+  0% { background-position: 0 0; }
+  100% { background-position: 1000px 1000px; }
+}
